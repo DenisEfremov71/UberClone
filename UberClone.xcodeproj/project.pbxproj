@@ -36,6 +36,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		72E2D7A02AFAAF4F0071ECA1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				72F64F5E2AFA6BCF002546FA /* Views */,
+				72F64F5D2AFA6BBD002546FA /* ViewModels */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		72F64F3C2AFA6763002546FA = {
 			isa = PBXGroup;
 			children = (
@@ -99,8 +108,7 @@
 		72F64F5B2AFA6B77002546FA /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				72F64F5E2AFA6BCF002546FA /* Views */,
-				72F64F5D2AFA6BBD002546FA /* ViewModels */,
+				72E2D7A02AFAAF4F0071ECA1 /* Home */,
 			);
 			path = Core;
 			sourceTree = "<group>";
