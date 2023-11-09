@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var mapState: MapViewState = .noInput
+    @EnvironmentObject var locationSearchVM: LocationSearchViewModel
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -39,6 +40,11 @@ struct HomeView: View {
             }
         }
         .edgesIgnoringSafeArea(.bottom)
+        .onReceive(LocationManager.shared.$userLocation, perform: { location in
+            if let location = location {
+                locationSearchVM.userLocation = location
+            }
+        })
     }
 }
 
