@@ -54,8 +54,10 @@ struct LocationSearchView: View {
                             subtitle: result.subtitle
                         )
                         .onTapGesture {
-                            locationSearchVM.selectLocation(result)
-                            mapState = .locationSelected
+                            withAnimation(.spring()) {
+                                locationSearchVM.selectLocation(result)
+                                mapState = .locationSelected
+                            }
                         }
                     }
                 }
