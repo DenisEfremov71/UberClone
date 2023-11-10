@@ -13,7 +13,9 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     // MARK: - Properties
 
     @Published var results = [MKLocalSearchCompletion]()
-    @Published var selectedLocationCoordinate: CLLocationCoordinate2D?
+    @Published var selectedUberLocation: UberLocation?
+    @Published var pickupTime: String?
+    @Published var dropOffTime: String?
 
     private let searchCompleter = MKLocalSearchCompleter()
     var queryFragment: String = "" {
@@ -35,7 +37,11 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     // MARK: - Helpers
 
     func selectLocation(_ localSearch: MKLocalSearchCompletion) {
-        locationSearch(forLocalSearchCCompletion: localSearch) { response, error in
+        locationSearch(forLocalSearchCCompletion: localSearch) { [weak self] response, error in
+            guard let self = self else {
+                return
+            }
+
             if let error = error {
                 print("DEBUG: Location search failed with error \(error.localizedDescription)")
                 return
@@ -46,7 +52,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
             let coordinate = item.placemark.coordinate
 
             DispatchQueue.main.async {
-                self.selectedLocationCoordinate = coordinate
+                self.selectedUberLocation = UberLocation(title: localSearch.title, coordinate: coordinate)
             }
 
             print("DEBUG: Location coordinates in LocationSearchViewModel \(coordinate)")
@@ -64,7 +70,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     }
 
     func computeRidePrice(forType type: RideType) -> Double {
-        guard let coordinate = selectedLocationCoordinate, let userLocation = userLocation else {
+        guard let coordinate = selectedUberLocation?.coordinate, let userLocation = userLocation else {
             return 0.0
         }
 
@@ -73,6 +79,47 @@ class LocationSearchViewModel: NSObject, ObservableObject {
         let tripDistanceInMeters = destination.distance(from: start)
 
         return type.computePrice(for: tripDistanceInMeters)
+    }
+
+    func getDestinationRoute(
+        from userLocation: CLLocationCoordinate2D,
+        to destination: CLLocationCoordinate2D,
+        completion: @escaping (MKRoute) -> Void
+    ) {
+        let userPlacemark = MKPlacemark(coordinate: userLocation)
+        let destinationPlacemark = MKPlacemark(coordinate: destination)
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: userPlacemark)
+        request.destination = MKMapItem(placemark: destinationPlacemark)
+        let directions = MKDirections(request: request)
+
+        directions.calculate { [weak self] response, error in
+            guard let self = self else {
+                return
+            }
+
+            // TODO: - Add error handling
+            if let error = error {
+                print("DEBUG: Failed to get directions with error \(error.localizedDescription)")
+                return
+            }
+
+            guard let route = response?.routes.first else {
+                // TODO: - Add error handling
+                return
+            }
+
+            self.configurePickupAndDropoffTimes(with: route.expectedTravelTime)
+            completion(route)
+        }
+    }
+
+    func configurePickupAndDropoffTimes(with expectedTravelTime: Double) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm a"
+
+        pickupTime = formatter.string(from: Date())
+        dropOffTime = formatter.string(from: Date() + expectedTravelTime)
     }
 }
 
