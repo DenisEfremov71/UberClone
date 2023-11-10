@@ -8,8 +8,72 @@
 import SwiftUI
 
 struct RegistrationView: View {
+    @State private var fullname = ""
+    @State private var email = ""
+    @State private var password = ""
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color(.black)
+                .ignoresSafeArea()
+
+            VStack(alignment: .leading) {
+                Button {
+
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .font(.title)
+                        .imageScale(.medium)
+                        .padding()
+                }
+
+                Text("Create new account")
+                    .font(.system(size: 40))
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.leading)
+                    .frame(width: 250)
+
+                VStack {
+                    VStack(spacing: 56) {
+                        CustomInputField(
+                            title: "Full Name",
+                            placeholder: "Enter your name",
+                            text: $fullname
+                        )
+
+                        CustomInputField(
+                            title: "Email Address",
+                            placeholder: "Enter your email",
+                            text: $email
+                        )
+
+                        CustomInputField(
+                            title: "Create Password",
+                            placeholder: "Enter your password",
+                            isSecureField: true,
+                            text: $password
+                        )
+                    }
+                    .padding(.vertical, 32)
+
+                    Button {
+
+                    } label: {
+                        HStack {
+                            Text("Sign Up")
+                                .foregroundColor(.black)
+                        }
+                        .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+                    }
+                    .background(.white)
+                    .cornerRadius(10)
+                }
+
+                Spacer()
+
+            }
+            .foregroundColor(.white)
+        }
     }
 }
 

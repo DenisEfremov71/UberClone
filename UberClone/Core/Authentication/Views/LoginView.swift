@@ -35,46 +35,19 @@ struct LoginView: View {
                 // input fields
                 VStack(spacing: 24) {
                     // input field 1
-                    VStack(alignment: .leading, spacing: 12) {
-                        // title
-                        Text("Email Address")
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                            .font(.footnote)
-
-                        // text field
-                        TextField("name@example.com", text: $email)
-                            .foregroundColor(.white)
-
-
-                        // divider
-                        Rectangle()
-                            .foregroundColor(Color(.init(white: 1, alpha: 0.3)))
-                            .frame(width: UIScreen.main.bounds.width - 32, height: 0.7)
-                    }
-                    .padding(.horizontal)
-                    .padding(.top, 12)
+                    CustomInputField(
+                        title: "Email",
+                        placeholder: "name@example.com",
+                        text: $email
+                    )
 
                     // input field 2
-                    VStack(alignment: .leading, spacing: 12) {
-                        // title
-                        Text("Password")
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                            .font(.footnote)
-
-                        // text field
-                        TextField("Enter your password", text: $password)
-                            .foregroundColor(.white)
-
-
-                        // divider
-                        Rectangle()
-                            .foregroundColor(Color(.init(white: 1, alpha: 0.3)))
-                            .frame(width: UIScreen.main.bounds.width - 32, height: 0.7)
-                    }
-                    .padding(.horizontal)
-                    .padding(.top, 12)
+                    CustomInputField(
+                        title: "Password",
+                        placeholder: "Enter your password",
+                        isSecureField: true,
+                        text: $password
+                    )
 
                     Button {
 
@@ -109,7 +82,7 @@ struct LoginView: View {
                     }
 
                     // social media sign up buttons
-                    HStack(spacing: 24) {
+                    HStack(spacing: 32) {
                         Button {
 
                         } label: {
@@ -141,8 +114,8 @@ struct LoginView: View {
                         Image(systemName: "arrow.right")
                             .foregroundColor(.black)
                     }
+                    .frame(width: UIScreen.main.bounds.width - 32, height: 50)
                 }
-                .frame(width: UIScreen.main.bounds.width - 32, height: 50)
                 .background(.white)
                 .cornerRadius(10)
 
