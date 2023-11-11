@@ -12,6 +12,11 @@ struct RegistrationView: View {
     @State private var email = ""
     @State private var password = ""
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var authenticationVM: AuthenticationViewModel
+
+    private var credentialsValid: Bool {
+        !email.isEmpty && !password.isEmpty
+    }
 
     var body: some View {
         ZStack {
@@ -58,7 +63,11 @@ struct RegistrationView: View {
                     .padding(.vertical, 32)
 
                     Button {
-
+                        authenticationVM.registerUser(
+                            withEmail: email,
+                            password: password,
+                            fullname: fullname
+                        )
                     } label: {
                         HStack {
                             Text("Sign Up")
@@ -68,6 +77,7 @@ struct RegistrationView: View {
                     }
                     .background(.white)
                     .cornerRadius(10)
+                    .disabled(!credentialsValid)
                 }
 
                 Spacer()
