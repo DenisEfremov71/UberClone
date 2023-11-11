@@ -18,6 +18,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct UberCloneApp: App {
     @StateObject var locationSearchVM = LocationSearchViewModel()
+    @StateObject var authenticationVM = AuthenticationViewModel()
 
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
@@ -26,6 +27,7 @@ struct UberCloneApp: App {
         WindowGroup {
             HomeView()
                 .environmentObject(locationSearchVM)
+                .environmentObject(authenticationVM)
         }
     }
 }

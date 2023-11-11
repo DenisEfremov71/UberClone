@@ -20,6 +20,7 @@
 		725064F52AFFC24200BBADB9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 725064F42AFFC24200BBADB9 /* FirebaseFirestore */; };
 		725064F72AFFC24200BBADB9 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 725064F62AFFC24200BBADB9 /* FirebaseFirestoreSwift */; };
 		725064F92AFFC24200BBADB9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 725064F82AFFC24200BBADB9 /* FirebaseStorage */; };
+		725064FB2AFFED3300BBADB9 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725064FA2AFFED3300BBADB9 /* AuthenticationViewModel.swift */; };
 		72E2D7A52AFAB0A40071ECA1 /* LocationSearchActivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E2D7A42AFAB0A40071ECA1 /* LocationSearchActivationView.swift */; };
 		72E2D7A72AFAB37A0071ECA1 /* MapViewActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E2D7A62AFAB37A0071ECA1 /* MapViewActionButton.swift */; };
 		72E2D7A92AFAB5A40071ECA1 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E2D7A82AFAB5A40071ECA1 /* LocationSearchView.swift */; };
@@ -44,6 +45,7 @@
 		725064EA2AFE751400BBADB9 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		725064ED2AFECDC300BBADB9 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
 		725064EF2AFFC03E00BBADB9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		725064FA2AFFED3300BBADB9 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		72E2D7A42AFAB0A40071ECA1 /* LocationSearchActivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchActivationView.swift; path = UberClone/Core/LocationSearchActivationView.swift; sourceTree = SOURCE_ROOT; };
 		72E2D7A62AFAB37A0071ECA1 /* MapViewActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewActionButton.swift; sourceTree = "<group>"; };
 		72E2D7A82AFAB5A40071ECA1 /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		725064E62AFE74ED00BBADB9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				725064FA2AFFED3300BBADB9 /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			files = (
 				72E2D7AD2AFADEFE0071ECA1 /* LocationSearchViewModel.swift in Sources */,
 				725064E02AFD87C000BBADB9 /* Double+Extensions.swift in Sources */,
+				725064FB2AFFED3300BBADB9 /* AuthenticationViewModel.swift in Sources */,
 				72E2D7A92AFAB5A40071ECA1 /* LocationSearchView.swift in Sources */,
 				72F64F642AFA754B002546FA /* LocationManager.swift in Sources */,
 				725064DC2AFC4A0E00BBADB9 /* RideRequestView.swift in Sources */,
