@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 
 class AuthenticationViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
@@ -44,6 +45,7 @@ class AuthenticationViewModel: ObservableObject {
                 return
             }
 
+            // TODO: - Add error handling
             guard let result = result else {
                 print("DEBUG: No result returned from Firebase")
                 return
@@ -52,6 +54,15 @@ class AuthenticationViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.userSession = result.user
             }
+
+            let user = User(uid: result.user.uid, email: email, fullname: fullname)
+
+            // TODO: - Add error handling
+            guard let encodedUser = try? Firestore.Encoder().encode(user) else {
+                return
+            }
+
+            Firestore.firestore().collection("users").document(result.user.uid).setData(encodedUser)
         }
     }
 
