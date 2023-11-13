@@ -14,6 +14,7 @@ class AuthenticationViewModel: ObservableObject {
 
     init() {
         userSession = Auth.auth().currentUser
+        fetchUser()
     }
 
     func signIn(withEmail email: String, password: String) {
@@ -63,6 +64,34 @@ class AuthenticationViewModel: ObservableObject {
             }
 
             Firestore.firestore().collection("users").document(result.user.uid).setData(encodedUser)
+        }
+    }
+
+    func fetchUser() {
+        guard let uid = userSession?.uid else {
+            return
+        }
+
+        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, error in
+            // TODO: - Add error handling
+            guard error == nil else {
+                print("DEBUG: Failed to retrieve data for user with error \(error?.localizedDescription ?? "")")
+                return
+            }
+
+            // TODO: - Add error handling
+            guard let snapshot = snapshot else {
+                print("DEBUG: No snapshot returned")
+                return
+            }
+
+            // TODO: - Add error handling
+            guard let user = try? snapshot.data(as: User.self) else {
+                print("DEBUG: Failed to decode data")
+                return
+            }
+
+            print("DEBUG: User is \(user.fullname)")
         }
     }
 
