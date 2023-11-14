@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct SideMenuView: View {
+    private let user: User
+
+    init(user: User) {
+        self.user = user
+    }
+
     var body: some View {
         VStack(spacing: 40) {
             // header view
@@ -21,9 +27,9 @@ struct SideMenuView: View {
                         .frame(width: 64, height: 64)
 
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Denis Efremov")
+                        Text(user.fullname)
                             .font(.system(size: 16, weight: .semibold))
-                        Text("test@testdomain.com")
+                        Text(user.email)
                             .font(.system(size: 14))
                             .accentColor(Color.theme.primaryTextColor)
                             .opacity(0.7)
@@ -77,5 +83,7 @@ struct SideMenuView: View {
 }
 
 #Preview {
-    SideMenuView()
+    SideMenuView(user:
+        User(uid: "abc123", email: "user@hisdomain.com", fullname: "John Doe")
+    )
 }

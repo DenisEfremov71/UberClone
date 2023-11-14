@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 
 class AuthenticationViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
+    @Published var currentUser: User?
 
     init() {
         userSession = Auth.auth().currentUser
@@ -72,7 +73,11 @@ class AuthenticationViewModel: ObservableObject {
             return
         }
 
-        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, error in
+        Firestore.firestore().collection("users").document(uid).getDocument { [weak self] snapshot, error in
+            guard let self = self else {
+                return
+            }
+
             // TODO: - Add error handling
             guard error == nil else {
                 print("DEBUG: Failed to retrieve data for user with error \(error?.localizedDescription ?? "")")
@@ -92,6 +97,10 @@ class AuthenticationViewModel: ObservableObject {
             }
 
             print("DEBUG: User is \(user.fullname)")
+
+            DispatchQueue.main.async {
+                self.currentUser = user
+            }
         }
     }
 
