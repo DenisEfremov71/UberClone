@@ -18,13 +18,18 @@ struct HomeView: View {
             if authenticationVM.userSession == nil {
                 LoginView()
             } else {
-                ZStack {
-                    if showSideMenu {
-                        SideMenuView()
+                NavigationStack {
+                    ZStack {
+                        if showSideMenu {
+                            SideMenuView()
+                        }
+                        mapView
+                            .offset(x: showSideMenu ? 316 : 0)
+                            .shadow(color: showSideMenu ? .black : .clear, radius: 10)
                     }
-                    mapView
-                        .offset(x: showSideMenu ? 316 : 0)
-                        .shadow(color: showSideMenu ? .black : .clear, radius: 10)
+                    .onAppear {
+                        showSideMenu = false
+                    }
                 }
             }
         }
