@@ -21,7 +21,7 @@ struct HomeView: View {
                 NavigationStack {
                     ZStack {
                         if showSideMenu {
-                            SideMenuView(user: user)
+                            SideMenuView()
                         }
                         mapView
                             .offset(x: showSideMenu ? 316 : 0)

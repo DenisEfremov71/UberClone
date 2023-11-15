@@ -8,33 +8,14 @@
 import SwiftUI
 
 struct SideMenuView: View {
-    private let user: User
-
-    init(user: User) {
-        self.user = user
-    }
+    @EnvironmentObject var authenticationVM: AuthenticationViewModel
 
     var body: some View {
         VStack(spacing: 40) {
             // header view
             VStack(alignment: .leading, spacing: 32) {
                 // user info
-                HStack {
-                    Image("male-profile-photo")
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 64, height: 64)
-
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(user.fullname)
-                            .font(.system(size: 16, weight: .semibold))
-                        Text(user.email)
-                            .font(.system(size: 14))
-                            .accentColor(Color.theme.primaryTextColor)
-                            .opacity(0.7)
-                    }
-                }
+                UserInfo()
 
                 // become a driver
                 VStack(alignment: .leading, spacing: 16) {
@@ -83,7 +64,6 @@ struct SideMenuView: View {
 }
 
 #Preview {
-    SideMenuView(user:
-        User(uid: "abc123", email: "user@hisdomain.com", fullname: "John Doe")
-    )
+    SideMenuView()
+        .environmentObject(AuthenticationViewModel())
 }
