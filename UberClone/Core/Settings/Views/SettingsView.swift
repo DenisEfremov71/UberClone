@@ -17,8 +17,9 @@ struct SettingsView: View {
                     HStack {
                         UserInfo(navigationEnabled: true)
                     }
+                    .padding(8)
                 }
-
+                
                 Section("Favorites") {
                     SavedLocationRow(
                         imageName: "house.circle.fill",
@@ -31,7 +32,7 @@ struct SettingsView: View {
                         subtitle: "Add Work"
                     )
                 }
-
+                
                 Section("Settings") {
                     SettingsRow(
                         imageName: "bell.circle.fill",
@@ -44,7 +45,7 @@ struct SettingsView: View {
                         tintColor: Color(.systemBlue)
                     )
                 }
-
+                
                 Section("Account") {
                     SettingsRow(
                         imageName: "dollarsign.square.fill",
@@ -56,13 +57,18 @@ struct SettingsView: View {
                         title: "Sign out",
                         tintColor: Color(.systemRed)
                     )
+                    .onTapGesture {
+                        authenticationVM.signOut()
+                    }
                 }
             }
         }
+        .navigationTitle("Settings")
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 
 #Preview {
     SettingsView()
-        .environmentObject(AuthenticationViewModel())
+    .environmentObject(AuthenticationViewModel())
 }

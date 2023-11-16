@@ -24,8 +24,10 @@ struct SettingsRow: View {
                     .font(.system(size: 15))
                     .foregroundColor(Color.theme.primaryTextColor)
             }
+            Spacer()
         }
         .padding(.vertical, 4)
+        .frame(maxWidth: .infinity)
     }
 }
 

@@ -108,6 +108,7 @@ class AuthenticationViewModel: ObservableObject {
         do {
             try Auth.auth().signOut()
             self.userSession = nil
+            self.currentUser = nil
         } catch {
             // TODO: - Add error handling
             print("DEBUG: Failed to sign out with error \(error.localizedDescription)")
