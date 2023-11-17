@@ -35,6 +35,7 @@
 		72E3007D2B01B26C00D989C5 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E3007C2B01B26C00D989C5 /* SideMenuView.swift */; };
 		72E3007F2B01B82D00D989C5 /* SideMenuOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E3007E2B01B82D00D989C5 /* SideMenuOptionViewModel.swift */; };
 		72E300812B01B9FD00D989C5 /* SideMenuOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E300802B01B9FD00D989C5 /* SideMenuOptionView.swift */; };
+		72E364AC2B07A85F00E240E4 /* SavedLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E364AB2B07A85F00E240E4 /* SavedLocationViewModel.swift */; };
 		72F64F492AFA6763002546FA /* UberCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F64F482AFA6763002546FA /* UberCloneApp.swift */; };
 		72F64F4D2AFA6765002546FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72F64F4C2AFA6765002546FA /* Assets.xcassets */; };
 		72F64F502AFA6765002546FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72F64F4F2AFA6765002546FA /* Preview Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		72E3007C2B01B26C00D989C5 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		72E3007E2B01B82D00D989C5 /* SideMenuOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionViewModel.swift; sourceTree = "<group>"; };
 		72E300802B01B9FD00D989C5 /* SideMenuOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionView.swift; sourceTree = "<group>"; };
+		72E364AB2B07A85F00E240E4 /* SavedLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocationViewModel.swift; sourceTree = "<group>"; };
 		72F64F452AFA6763002546FA /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F64F482AFA6763002546FA /* UberCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberCloneApp.swift; sourceTree = "<group>"; };
 		72F64F4C2AFA6765002546FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		72562B352B0502F100763CDF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				72E364AB2B07A85F00E240E4 /* SavedLocationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				725064E92AFE750000BBADB9 /* LoginView.swift in Sources */,
 				725064EE2AFECDC300BBADB9 /* CustomInputField.swift in Sources */,
 				725064DE2AFD5B7B00BBADB9 /* RideType.swift in Sources */,
+				72E364AC2B07A85F00E240E4 /* SavedLocationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
