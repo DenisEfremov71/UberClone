@@ -8,6 +8,11 @@
 import Foundation
 import MapKit
 
+enum LocationResultsViewConfig {
+    case ride
+    case saveLocation
+}
+
 class LocationSearchViewModel: NSObject, ObservableObject {
 
     // MARK: - Properties
@@ -36,26 +41,31 @@ class LocationSearchViewModel: NSObject, ObservableObject {
 
     // MARK: - Helpers
 
-    func selectLocation(_ localSearch: MKLocalSearchCompletion) {
-        locationSearch(forLocalSearchCCompletion: localSearch) { [weak self] response, error in
-            guard let self = self else {
-                return
-            }
+    func selectLocation(_ localSearch: MKLocalSearchCompletion, config: LocationResultsViewConfig) {
+        switch config {
+        case .ride:
+            locationSearch(forLocalSearchCCompletion: localSearch) { [weak self] response, error in
+                guard let self = self else {
+                    return
+                }
 
-            if let error = error {
-                print("DEBUG: Location search failed with error \(error.localizedDescription)")
-                return
-            }
-            guard let item = response?.mapItems.first else {
-                return
-            }
-            let coordinate = item.placemark.coordinate
+                if let error = error {
+                    print("DEBUG: Location search failed with error \(error.localizedDescription)")
+                    return
+                }
+                guard let item = response?.mapItems.first else {
+                    return
+                }
+                let coordinate = item.placemark.coordinate
 
-            DispatchQueue.main.async {
-                self.selectedUberLocation = UberLocation(title: localSearch.title, coordinate: coordinate)
-            }
+                DispatchQueue.main.async {
+                    self.selectedUberLocation = UberLocation(title: localSearch.title, coordinate: coordinate)
+                }
 
-            print("DEBUG: Location coordinates in LocationSearchViewModel \(coordinate)")
+                print("DEBUG: Location coordinates in LocationSearchViewModel \(coordinate)")
+            }
+        case .saveLocation:
+            print("DEBUG: Saved location here...")
         }
     }
 
