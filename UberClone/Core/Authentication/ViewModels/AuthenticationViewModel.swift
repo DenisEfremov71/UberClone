@@ -96,8 +96,6 @@ class AuthenticationViewModel: ObservableObject {
                 return
             }
 
-            print("DEBUG: User is \(user.fullname)")
-
             DispatchQueue.main.async {
                 self.currentUser = user
             }

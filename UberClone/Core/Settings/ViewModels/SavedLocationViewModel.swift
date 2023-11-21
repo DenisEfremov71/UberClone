@@ -41,4 +41,13 @@ enum SavedLocationViewModel: Int, CaseIterable, Identifiable {
             return "archivebox.circle.fill"
         }
     }
+
+    var databaseKey: String {
+        switch self {
+        case .home:
+            return "homeLocation"
+        case .work:
+            return "workLocation"
+        }
+    }
 }

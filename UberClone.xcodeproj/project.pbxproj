@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		722942492B0D1DB000624F94 /* SavedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722942482B0D1DB000624F94 /* SavedLocation.swift */; };
 		7244C57F2B08FE8C0001AE32 /* SavedLocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7244C57E2B08FE8C0001AE32 /* SavedLocationSearchView.swift */; };
 		7244C5812B0904430001AE32 /* LocationSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7244C5802B0904430001AE32 /* LocationSearchResults.swift */; };
 		725064DC2AFC4A0E00BBADB9 /* RideRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725064DB2AFC4A0E00BBADB9 /* RideRequestView.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		722942482B0D1DB000624F94 /* SavedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocation.swift; sourceTree = "<group>"; };
 		7244C57E2B08FE8C0001AE32 /* SavedLocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocationSearchView.swift; sourceTree = "<group>"; };
 		7244C5802B0904430001AE32 /* LocationSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResults.swift; sourceTree = "<group>"; };
 		725064DB2AFC4A0E00BBADB9 /* RideRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestView.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				725064DD2AFD5B7B00BBADB9 /* RideType.swift */,
 				725064E12AFD9E3A00BBADB9 /* UberLocation.swift */,
 				72E300772B0198EA00D989C5 /* User.swift */,
+				722942482B0D1DB000624F94 /* SavedLocation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				72562B372B05043800763CDF /* UserInfo.swift in Sources */,
 				72E3007F2B01B82D00D989C5 /* SideMenuOptionViewModel.swift in Sources */,
 				72E2D7A92AFAB5A40071ECA1 /* LocationSearchView.swift in Sources */,
+				722942492B0D1DB000624F94 /* SavedLocation.swift in Sources */,
 				72F64F642AFA754B002546FA /* LocationManager.swift in Sources */,
 				725064DC2AFC4A0E00BBADB9 /* RideRequestView.swift in Sources */,
 				725064EB2AFE751400BBADB9 /* RegistrationView.swift in Sources */,
