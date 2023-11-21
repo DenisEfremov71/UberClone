@@ -50,4 +50,13 @@ enum SavedLocationViewModel: Int, CaseIterable, Identifiable {
             return "workLocation"
         }
     }
+
+    func subtitle(forUser user: User?) -> String {
+        switch self {
+        case .home:
+            return user?.homeLocation?.title ?? "Add Home"
+        case .work:
+            return user?.workLocation?.title ?? "Add Work"
+        }
+    }
 }

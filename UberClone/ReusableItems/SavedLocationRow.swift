@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SavedLocationRow: View {
     let viewModel: SavedLocationViewModel
+    let user: User?
 
     var body: some View {
         HStack(spacing: 12) {
@@ -20,7 +21,7 @@ struct SavedLocationRow: View {
                 Text(viewModel.title)
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(Color.theme.primaryTextColor)
-                Text(viewModel.subtitle)
+                Text(viewModel.subtitle(forUser: user))
                     .font(.system(size: 14))
                     .foregroundColor(.gray)
             }
@@ -35,5 +36,5 @@ struct SavedLocationRow: View {
 }
 
 #Preview {
-    SavedLocationRow(viewModel: .home)
+    SavedLocationRow(viewModel: .home, user: User(uid: "123", email: "user@test.com", fullname: "John Doe", homeLocation: nil, workLocation: nil))
 }
