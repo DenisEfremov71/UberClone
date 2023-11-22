@@ -57,7 +57,15 @@ class AuthenticationViewModel: ObservableObject {
                 self.userSession = result.user
             }
 
-            let user = User(uid: result.user.uid, email: email, fullname: fullname)
+            let user = User(
+                uid: result.user.uid,
+                email: email,
+                fullname: fullname,
+                coordinates: GeoPoint(latitude: 49.0, longitude: -123.0),
+                accountType: .driver,
+                homeLocation: nil,
+                workLocation: nil
+            )
 
             // TODO: - Add error handling
             guard let encodedUser = try? Firestore.Encoder().encode(user) else {

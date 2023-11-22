@@ -36,5 +36,5 @@ struct SavedLocationRow: View {
 }
 
 #Preview {
-    SavedLocationRow(viewModel: .home, user: User(uid: "123", email: "user@test.com", fullname: "John Doe", homeLocation: nil, workLocation: nil))
+    SavedLocationRow(viewModel: .home, user: User.mockUser)
 }
