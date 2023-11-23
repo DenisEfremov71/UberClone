@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		722942492B0D1DB000624F94 /* SavedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722942482B0D1DB000624F94 /* SavedLocation.swift */; };
 		7229424D2B0E758C00624F94 /* User+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7229424C2B0E758C00624F94 /* User+Extensions.swift */; };
+		7229424F2B0FC3EF00624F94 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7229424E2B0FC3EF00624F94 /* HomeViewModel.swift */; };
 		7244C57F2B08FE8C0001AE32 /* SavedLocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7244C57E2B08FE8C0001AE32 /* SavedLocationSearchView.swift */; };
 		7244C5812B0904430001AE32 /* LocationSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7244C5802B0904430001AE32 /* LocationSearchResults.swift */; };
 		725064DC2AFC4A0E00BBADB9 /* RideRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725064DB2AFC4A0E00BBADB9 /* RideRequestView.swift */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		722942482B0D1DB000624F94 /* SavedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocation.swift; sourceTree = "<group>"; };
 		7229424C2B0E758C00624F94 /* User+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Extensions.swift"; sourceTree = "<group>"; };
+		7229424E2B0FC3EF00624F94 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7244C57E2B08FE8C0001AE32 /* SavedLocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocationSearchView.swift; sourceTree = "<group>"; };
 		7244C5802B0904430001AE32 /* LocationSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResults.swift; sourceTree = "<group>"; };
 		725064DB2AFC4A0E00BBADB9 /* RideRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestView.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 		72F64F5D2AFA6BBD002546FA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				7229424E2B0FC3EF00624F94 /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72E2D7AD2AFADEFE0071ECA1 /* LocationSearchViewModel.swift in Sources */,
+				7229424F2B0FC3EF00624F94 /* HomeViewModel.swift in Sources */,
 				725064E02AFD87C000BBADB9 /* Double+Extensions.swift in Sources */,
 				725064FB2AFFED3300BBADB9 /* AuthenticationViewModel.swift in Sources */,
 				72562B372B05043800763CDF /* UserInfo.swift in Sources */,

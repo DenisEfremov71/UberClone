@@ -39,6 +39,10 @@ class AuthenticationViewModel: ObservableObject {
     }
 
     func registerUser(withEmail email: String, password: String, fullname: String) {
+        guard let location = LocationManager.shared.userLocation else {
+            return
+        }
+
         Auth.auth().createUser(withEmail: email, password: password) { [unowned self] result, error in
 
             // TODO: - Add error handling
@@ -61,7 +65,7 @@ class AuthenticationViewModel: ObservableObject {
                 uid: result.user.uid,
                 email: email,
                 fullname: fullname,
-                coordinates: GeoPoint(latitude: 49.0, longitude: -123.0),
+                coordinates: GeoPoint(latitude: location.latitude, longitude: location.longitude),
                 accountType: .driver,
                 homeLocation: nil,
                 workLocation: nil
