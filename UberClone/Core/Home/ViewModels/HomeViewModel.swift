@@ -11,6 +11,8 @@ import FirebaseFirestoreSwift
 
 class HomeViewModel: ObservableObject {
 
+    @Published var drivers = [User]()
+
     init() {
         fetchDrivers()
     }
@@ -24,8 +26,7 @@ class HomeViewModel: ObservableObject {
                 }
 
                 let drivers = documents.compactMap { try? $0.data(as: User.self) }
-
-                print("DEBUG: Drivers \(drivers)")
+                self.drivers = drivers
             }
     }
 }
