@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import Combine
 import Firebase
 import FirebaseFirestoreSwift
 
 class AuthenticationViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
+    private var cancellables = Set<AnyCancellable>()
+    private let service = UserService.shared
 
     init() {
         userSession = Auth.auth().currentUser
@@ -35,6 +38,8 @@ class AuthenticationViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.userSession = result.user
             }
+
+            self.fetchUser()
         }
     }
 
@@ -81,37 +86,14 @@ class AuthenticationViewModel: ObservableObject {
     }
 
     func fetchUser() {
-        guard let uid = userSession?.uid else {
-            return
-        }
-
-        Firestore.firestore().collection("users").document(uid).getDocument { [weak self] snapshot, error in
-            guard let self = self else {
-                return
+        service.$user
+            .sink { [weak self] user in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.currentUser = user
+                }
             }
-
-            // TODO: - Add error handling
-            guard error == nil else {
-                print("DEBUG: Failed to retrieve data for user with error \(error?.localizedDescription ?? "")")
-                return
-            }
-
-            // TODO: - Add error handling
-            guard let snapshot = snapshot else {
-                print("DEBUG: No snapshot returned")
-                return
-            }
-
-            // TODO: - Add error handling
-            guard let user = try? snapshot.data(as: User.self) else {
-                print("DEBUG: Failed to decode data")
-                return
-            }
-
-            DispatchQueue.main.async {
-                self.currentUser = user
-            }
-        }
+            .store(in: &cancellables)
     }
 
     func signOut() {

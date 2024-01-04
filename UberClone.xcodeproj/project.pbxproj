@@ -42,6 +42,7 @@
 		72E300812B01B9FD00D989C5 /* SideMenuOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E300802B01B9FD00D989C5 /* SideMenuOptionView.swift */; };
 		72E364AC2B07A85F00E240E4 /* SavedLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E364AB2B07A85F00E240E4 /* SavedLocationViewModel.swift */; };
 		72F22DCE2B463219008E3396 /* DriverAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F22DCD2B463219008E3396 /* DriverAnnotation.swift */; };
+		72F22DD22B464A23008E3396 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F22DD12B464A23008E3396 /* UserService.swift */; };
 		72F64F492AFA6763002546FA /* UberCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F64F482AFA6763002546FA /* UberCloneApp.swift */; };
 		72F64F4D2AFA6765002546FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72F64F4C2AFA6765002546FA /* Assets.xcassets */; };
 		72F64F502AFA6765002546FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72F64F4F2AFA6765002546FA /* Preview Assets.xcassets */; };
@@ -82,6 +83,7 @@
 		72E300802B01B9FD00D989C5 /* SideMenuOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionView.swift; sourceTree = "<group>"; };
 		72E364AB2B07A85F00E240E4 /* SavedLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocationViewModel.swift; sourceTree = "<group>"; };
 		72F22DCD2B463219008E3396 /* DriverAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverAnnotation.swift; sourceTree = "<group>"; };
+		72F22DD12B464A23008E3396 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		72F64F452AFA6763002546FA /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F64F482AFA6763002546FA /* UberCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberCloneApp.swift; sourceTree = "<group>"; };
 		72F64F4C2AFA6765002546FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -256,6 +258,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		72F22DCF2B4649EB008E3396 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				72F64F4C2AFA6765002546FA /* Assets.xcassets */,
+				725064EF2AFFC03E00BBADB9 /* GoogleService-Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		72F22DD02B464A06008E3396 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				72F22DD12B464A23008E3396 /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		72F64F3C2AFA6763002546FA = {
 			isa = PBXGroup;
 			children = (
@@ -276,14 +295,14 @@
 			isa = PBXGroup;
 			children = (
 				72F64F5C2AFA6B7A002546FA /* App */,
-				72F64F4C2AFA6765002546FA /* Assets.xcassets */,
 				72F64F5B2AFA6B77002546FA /* Core */,
 				72F64F5A2AFA6B75002546FA /* Extensions */,
-				725064EF2AFFC03E00BBADB9 /* GoogleService-Info.plist */,
 				72F64F592AFA6B72002546FA /* Managers */,
 				72F64F562AFA6B67002546FA /* Models */,
 				72F64F4E2AFA6765002546FA /* Preview Content */,
+				72F22DCF2B4649EB008E3396 /* Resources */,
 				725064EC2AFECD9900BBADB9 /* ReusableItems */,
+				72F22DD02B464A06008E3396 /* Services */,
 			);
 			path = UberClone;
 			sourceTree = "<group>";
@@ -467,6 +486,7 @@
 				72E300812B01B9FD00D989C5 /* SideMenuOptionView.swift in Sources */,
 				72F64F622AFA6CCA002546FA /* UberMapViewRepresentable.swift in Sources */,
 				72F22DCE2B463219008E3396 /* DriverAnnotation.swift in Sources */,
+				72F22DD22B464A23008E3396 /* UserService.swift in Sources */,
 				72562B3B2B050DD200763CDF /* SettingsRow.swift in Sources */,
 				72F64F602AFA6BF1002546FA /* HomeView.swift in Sources */,
 				725064E22AFD9E3A00BBADB9 /* UberLocation.swift in Sources */,
