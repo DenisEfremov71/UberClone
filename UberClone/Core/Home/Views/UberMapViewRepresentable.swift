@@ -12,7 +12,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
 
     let mapView = MKMapView()
     @Binding var mapState: MapViewState
-    @EnvironmentObject var locationSearchVM: LocationSearchViewModel
+    //@EnvironmentObject var locationSearchVM: LocationSearchViewModel
     @EnvironmentObject var homeVM: HomeViewModel
 
     func makeUIView(context: Context) -> some UIView {
@@ -32,7 +32,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
         case .searchingForLocation:
             break
         case .locationSelected:
-            if let coordinate = locationSearchVM.selectedUberLocation?.coordinate {
+            if let coordinate = homeVM.selectedUberLocation?.coordinate {
                 print("DEBUG: Adding stuff to map...")
                 context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
                 context.coordinator.configurePolyline(withDestinationCoordinate: coordinate)
@@ -109,7 +109,7 @@ extension UberMapViewRepresentable {
             guard let userLocationCoordinate = userLocationCCoordinate else {
                 return
             }
-            parent.locationSearchVM.getDestinationRoute(from: userLocationCoordinate, to: coordinate) { [weak self] route in
+            parent.homeVM.getDestinationRoute(from: userLocationCoordinate, to: coordinate) { [weak self] route in
                 guard let self = self else {
                     return
                 }

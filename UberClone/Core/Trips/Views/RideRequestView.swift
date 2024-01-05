@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RideRequestView: View {
     @State private var selectedRideType: RideType = .uberX
-    @EnvironmentObject var locationSearchVM: LocationSearchViewModel
+    @EnvironmentObject var viewModel: HomeViewModel
 
     var body: some View {
         VStack {
@@ -37,19 +37,19 @@ struct RideRequestView: View {
                             .font(.system(size: 16, weight: .semibold))
                             .foregroundColor(.gray)
                         Spacer()
-                        Text(locationSearchVM.pickupTime ?? "")
+                        Text(viewModel.pickupTime ?? "")
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundColor(.gray)
                     }
                     .padding(.bottom, 10)
 
                     HStack {
-                        if let location = locationSearchVM.selectedUberLocation {
+                        if let location = viewModel.selectedUberLocation {
                             Text(location.title)
                                 .font(.system(size: 16, weight: .semibold))
                         }
                         Spacer()
-                        Text(locationSearchVM.dropOffTime ?? "")
+                        Text(viewModel.dropOffTime ?? "")
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundColor(.gray)
                     }
@@ -78,7 +78,7 @@ struct RideRequestView: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(type.description)
                                     .font(.system(size: 14, weight: .semibold))
-                                Text(locationSearchVM.computeRidePrice(forType: type).toCurrency())
+                                Text(viewModel.computeRidePrice(forType: type).toCurrency())
                                     .font(.system(size: 14, weight: .semibold))
                             }
                             .padding(12)
@@ -144,5 +144,5 @@ struct RideRequestView: View {
 
 #Preview {
     RideRequestView()
-        .environmentObject(LocationSearchViewModel())
+        .environmentObject(HomeViewModel())
 }

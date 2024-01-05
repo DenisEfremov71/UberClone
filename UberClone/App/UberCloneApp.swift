@@ -17,7 +17,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct UberCloneApp: App {
-    @StateObject var locationSearchVM = LocationSearchViewModel()
+    //@StateObject var locationSearchVM = LocationSearchViewModel()
     @StateObject var authenticationVM = AuthenticationViewModel()
     @StateObject var homeViewModel = HomeViewModel()
 
@@ -27,7 +27,7 @@ struct UberCloneApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environmentObject(locationSearchVM)
+                //.environmentObject(locationSearchVM)
                 .environmentObject(authenticationVM)
                 .environmentObject(homeViewModel)
         }
