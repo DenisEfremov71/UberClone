@@ -17,6 +17,7 @@ class HomeViewModel: NSObject, ObservableObject {
 
     private let service = UserService.shared
     private var cancellables = Set<AnyCancellable>()
+    private var currentUser: User?
 
     @Published var drivers = [User]()
 
@@ -48,7 +49,9 @@ class HomeViewModel: NSObject, ObservableObject {
     func fetchUser() {
         service.$user
             .sink { [weak self] user in
-                guard let self = self, let user = user else { return }
+                guard let self = self else { return }
+                self.currentUser = user
+                guard let user = user else { return }
                 guard user.accountType == .passenger else { return }
                 self.fetchDrivers()
             }
@@ -75,6 +78,18 @@ class HomeViewModel: NSObject, ObservableObject {
 // MARK: - Location Search Helpers
 
 extension HomeViewModel {
+    func getPlacemark(forLocation location: CLLocation, completion: @escaping (CLPlacemark?, Error?) -> Void) {
+        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+
+            guard let placemark = placemarks?.first else { return }
+            completion(placemark, nil)
+        }
+    }
+
     func selectLocation(_ localSearch: MKLocalSearchCompletion, config: LocationResultsViewConfig) {
         locationSearch(forLocalSearchCompletion: localSearch) { [weak self] response, error in
             guard let self = self else {
@@ -186,4 +201,60 @@ extension HomeViewModel: MKLocalSearchCompleterDelegate {
             self.results = completer.results
         }
     }
+}
+
+// MARK: - Passenger API
+
+extension HomeViewModel {
+    func requestTrip() {
+        guard let driver = drivers.first else { return }
+        guard let currentUser = currentUser else { return }
+        guard let dropoffLocation = selectedUberLocation else { return }
+
+        let dropoffGeoPoint = GeoPoint(
+            latitude: dropoffLocation.coordinate.latitude,
+            longitude: dropoffLocation.coordinate.longitude
+        )
+
+        let userLocation = CLLocation(
+            latitude: currentUser.coordinates.latitude,
+            longitude: currentUser.coordinates.longitude
+        )
+
+        getPlacemark(forLocation: userLocation) { [weak self] placemark, error in
+            guard let self = self else { return }
+            guard let placemark = placemark else { return }
+            
+            let trip = Trip(
+                id: UUID().uuidString,
+                passengerUid: currentUser.uid,
+                driverUid: driver.uid,
+                passengerName: currentUser.fullname,
+                driverName: driver.fullname,
+                passengerLocation: currentUser.coordinates,
+                driverLocation: driver.coordinates,
+                pickupLocationName: placemark.name ?? "Current user location",
+                dropoffLocationName: dropoffLocation.title,
+                pickupLocationAddress: "1 Infinite Loop",
+                pickupLocation: currentUser.coordinates,
+                dropoffLocation: dropoffGeoPoint,
+                tripCost: 50.00
+            )
+
+            guard let encodedTrip = try? Firestore.Encoder().encode(trip) else { return }
+            Firestore.firestore().collection("trips").document().setData(encodedTrip) { error in
+                if let error = error {
+                    print("DEBUG: Error = \(error.localizedDescription)")
+                } else {
+                    print("DEBUG: Did upload trip to firestore")
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Driver API
+
+extension HomeViewModel {
+
 }
