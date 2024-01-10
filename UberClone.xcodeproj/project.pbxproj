@@ -31,6 +31,8 @@
 		72562B372B05043800763CDF /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72562B362B05043800763CDF /* UserInfo.swift */; };
 		72562B392B050AF500763CDF /* SavedLocationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72562B382B050AF500763CDF /* SavedLocationRow.swift */; };
 		72562B3B2B050DD200763CDF /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72562B3A2B050DD200763CDF /* SettingsRow.swift */; };
+		72B564B42B4F135600ED3E55 /* Trip+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B564B32B4F135600ED3E55 /* Trip+Extensions.swift */; };
+		72B564B62B4F189D00ED3E55 /* GeoPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B564B52B4F189D00ED3E55 /* GeoPoint+Extensions.swift */; };
 		72E2D7A52AFAB0A40071ECA1 /* LocationSearchActivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E2D7A42AFAB0A40071ECA1 /* LocationSearchActivationView.swift */; };
 		72E2D7A72AFAB37A0071ECA1 /* MapViewActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E2D7A62AFAB37A0071ECA1 /* MapViewActionButton.swift */; };
 		72E2D7A92AFAB5A40071ECA1 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E2D7A82AFAB5A40071ECA1 /* LocationSearchView.swift */; };
@@ -74,6 +76,8 @@
 		72562B362B05043800763CDF /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		72562B382B050AF500763CDF /* SavedLocationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocationRow.swift; sourceTree = "<group>"; };
 		72562B3A2B050DD200763CDF /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
+		72B564B32B4F135600ED3E55 /* Trip+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+Extensions.swift"; sourceTree = "<group>"; };
+		72B564B52B4F189D00ED3E55 /* GeoPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeoPoint+Extensions.swift"; sourceTree = "<group>"; };
 		72E2D7A42AFAB0A40071ECA1 /* LocationSearchActivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchActivationView.swift; path = UberClone/Core/LocationSearchActivationView.swift; sourceTree = SOURCE_ROOT; };
 		72E2D7A62AFAB37A0071ECA1 /* MapViewActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewActionButton.swift; sourceTree = "<group>"; };
 		72E2D7A82AFAB5A40071ECA1 /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
@@ -345,8 +349,10 @@
 		72F64F5A2AFA6B75002546FA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				725064DF2AFD87C000BBADB9 /* Double+Extensions.swift */,
 				725064E32AFDB3B500BBADB9 /* Color+Extensions.swift */,
+				725064DF2AFD87C000BBADB9 /* Double+Extensions.swift */,
+				72B564B52B4F189D00ED3E55 /* GeoPoint+Extensions.swift */,
+				72B564B32B4F135600ED3E55 /* Trip+Extensions.swift */,
 				7229424C2B0E758C00624F94 /* User+Extensions.swift */,
 			);
 			path = Extensions;
@@ -489,10 +495,12 @@
 				72562B342B0502D300763CDF /* SettingsView.swift in Sources */,
 				72E300782B0198EA00D989C5 /* User.swift in Sources */,
 				72E2D7AF2AFC12FA0071ECA1 /* MapViewState.swift in Sources */,
+				72B564B42B4F135600ED3E55 /* Trip+Extensions.swift in Sources */,
 				72E2D7A72AFAB37A0071ECA1 /* MapViewActionButton.swift in Sources */,
 				72F64F492AFA6763002546FA /* UberCloneApp.swift in Sources */,
 				72E300812B01B9FD00D989C5 /* SideMenuOptionView.swift in Sources */,
 				72F64F622AFA6CCA002546FA /* UberMapViewRepresentable.swift in Sources */,
+				72B564B62B4F189D00ED3E55 /* GeoPoint+Extensions.swift in Sources */,
 				72F22DCE2B463219008E3396 /* DriverAnnotation.swift in Sources */,
 				72F22DD22B464A23008E3396 /* UserService.swift in Sources */,
 				72562B3B2B050DD200763CDF /* SettingsRow.swift in Sources */,

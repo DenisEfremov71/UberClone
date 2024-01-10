@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeView: View {
     @State private var mapState: MapViewState = .noInput
     @State private var showSideMenu = false
-    //@EnvironmentObject var locationSearchVM: LocationSearchViewModel
     @EnvironmentObject var authenticationVM: AuthenticationViewModel
     @EnvironmentObject var homeVM: HomeViewModel
 
@@ -66,6 +65,11 @@ extension HomeView {
 
             if mapState == .locationSelected || mapState == .polylineAdded {
                 RideRequestView()
+                    .transition(.move(edge: .bottom))
+            }
+
+            if let trip = homeVM.trip {
+                AcceptTripView(trip: trip)
                     .transition(.move(edge: .bottom))
             }
         }

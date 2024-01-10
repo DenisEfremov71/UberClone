@@ -20,6 +20,7 @@ class HomeViewModel: NSObject, ObservableObject {
     private var currentUser: User?
 
     @Published var drivers = [User]()
+    @Published var trip: Trip?
 
     // Locaion search properties
     @Published var results = [MKLocalSearchCompletion]()
@@ -60,22 +61,6 @@ class HomeViewModel: NSObject, ObservableObject {
                 }
             }
             .store(in: &cancellables)
-    }
-
-    func fetchDrivers() {
-        Firestore.firestore().collection("users")
-            .whereField("accountType", isEqualTo: AccountType.driver.rawValue)
-            .getDocuments { [weak self] snapshot, _ in
-                guard let self = self else { return }
-                guard let documents = snapshot?.documents else {
-                    return
-                }
-
-                let drivers = documents.compactMap { try? $0.data(as: User.self) }
-                DispatchQueue.main.async {
-                    self.drivers = drivers
-                }
-            }
     }
 }
 
@@ -210,6 +195,22 @@ extension HomeViewModel: MKLocalSearchCompleterDelegate {
 // MARK: - Passenger API
 
 extension HomeViewModel {
+    func fetchDrivers() {
+        Firestore.firestore().collection("users")
+            .whereField("accountType", isEqualTo: AccountType.driver.rawValue)
+            .getDocuments { [weak self] snapshot, _ in
+                guard let self = self else { return }
+                guard let documents = snapshot?.documents else {
+                    return
+                }
+
+                let drivers = documents.compactMap { try? $0.data(as: User.self) }
+                DispatchQueue.main.async {
+                    self.drivers = drivers
+                }
+            }
+    }
+
     func requestTrip() {
         guard let driver = drivers.first else { return }
         guard let currentUser = currentUser else { return }
@@ -274,7 +275,7 @@ extension HomeViewModel {
                 guard let documents = snapshot?.documents, let document = documents.first else { return }
                 guard let trip = try? document.data(as: Trip.self) else { return }
 
-                print("DEBUG: Trip request for driver is \(trip)")
+                self.trip = trip
             }
     }
 }
