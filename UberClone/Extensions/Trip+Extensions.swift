@@ -23,7 +23,9 @@ extension Trip {
             pickupLocationAddress: "1165 Pacific Blvd",
             pickupLocation: GeoPoint(latitude: 49.274474, longitude: -123.120360),
             dropoffLocation: GeoPoint(latitude: 49.227895, longitude: -123.000141),
-            tripCost: 55.00
+            tripCost: 55.00,
+            distanceToPassenger: 1000,
+            travelTimeToPassenger: 12
         )
     }
 }

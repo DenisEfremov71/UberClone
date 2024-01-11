@@ -331,9 +331,9 @@
 				72E2D7AE2AFC12FA0071ECA1 /* MapViewState.swift */,
 				725064DD2AFD5B7B00BBADB9 /* RideType.swift */,
 				722942482B0D1DB000624F94 /* SavedLocation.swift */,
+				72402B682B48782900C4F007 /* Trip.swift */,
 				725064E12AFD9E3A00BBADB9 /* UberLocation.swift */,
 				72E300772B0198EA00D989C5 /* User.swift */,
-				72402B682B48782900C4F007 /* Trip.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

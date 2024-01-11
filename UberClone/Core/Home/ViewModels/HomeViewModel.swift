@@ -67,6 +67,24 @@ class HomeViewModel: NSObject, ObservableObject {
 // MARK: - Location Search Helpers
 
 extension HomeViewModel {
+    func addressFromPlacemark(_ placemark: CLPlacemark) -> String {
+        var result = ""
+
+        if let thoroughfare = placemark.thoroughfare {
+            result += thoroughfare
+        }
+
+        if let subthoroughfare = placemark.subThoroughfare {
+            result += " \(subthoroughfare)"
+        }
+
+        if let subadministrativearea = placemark.subAdministrativeArea {
+            result += ", \(subadministrativearea)"
+        }
+
+        return result
+    }
+
     func getPlacemark(forLocation location: CLLocation, completion: @escaping (CLPlacemark?, Error?) -> Void) {
         CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
             if let error = error {
@@ -129,13 +147,16 @@ extension HomeViewModel {
     }
 
     func computeRidePrice(forType type: RideType) -> Double {
-        guard let coordinate = selectedUberLocation?.coordinate, let userLocation = userLocation else {
+        guard let destCoordinate = selectedUberLocation?.coordinate else {
+            return 0.0
+        }
+        guard let userCoordinate = self.userLocation else {
             return 0.0
         }
 
-        let start = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
-        let destination = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let tripDistanceInMeters = destination.distance(from: start)
+        let userLocation = CLLocation(latitude: userCoordinate.latitude, longitude: userCoordinate.longitude)
+        let destination = CLLocation(latitude: destCoordinate.latitude, longitude: destCoordinate.longitude)
+        let tripDistanceInMeters = userLocation.distance(from: destination)
 
         return type.computePrice(for: tripDistanceInMeters)
     }
@@ -230,6 +251,8 @@ extension HomeViewModel {
             guard let self = self else { return }
             guard let placemark = placemark else { return }
             
+            let tripCost = self.computeRidePrice(forType: .uberX)
+
             let trip = Trip(
                 id: UUID().uuidString,
                 passengerUid: currentUser.uid,
@@ -240,10 +263,12 @@ extension HomeViewModel {
                 driverLocation: driver.coordinates,
                 pickupLocationName: placemark.name ?? "Current user location",
                 dropoffLocationName: dropoffLocation.title,
-                pickupLocationAddress: "1 Infinite Loop",
+                pickupLocationAddress: self.addressFromPlacemark(placemark),
                 pickupLocation: currentUser.coordinates,
                 dropoffLocation: dropoffGeoPoint,
-                tripCost: 50.00
+                tripCost: tripCost,
+                distanceToPassenger: 0,
+                travelTimeToPassenger: 0
             )
 
             guard let encodedTrip = try? Firestore.Encoder().encode(trip) else { return }
@@ -276,6 +301,13 @@ extension HomeViewModel {
                 guard let trip = try? document.data(as: Trip.self) else { return }
 
                 self.trip = trip
+
+                self.getDestinationRoute(
+                    from: trip.driverLocation.toCoordinate(),
+                    to: trip.pickupLocation.toCoordinate()) { route in
+                        self.trip?.travelTimeToPassenger = Int(route.expectedTravelTime / 60)
+                        self.trip?.distanceToPassenger = route.distance
+                    }
             }
     }
 }
