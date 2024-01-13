@@ -10,6 +10,7 @@ import MapKit
 import Firebase
 
 struct AcceptTripView: View {
+    @EnvironmentObject var viewModel: HomeViewModel
     @State private var region: MKCoordinateRegion
     let trip: Trip
     let annotationItem: UberLocation
@@ -137,7 +138,7 @@ struct AcceptTripView: View {
             // action buttons
             HStack {
                 Button {
-
+                    viewModel.rejectTrip()
                 } label: {
                     Text("Reject")
                         .font(.headline)
@@ -152,7 +153,7 @@ struct AcceptTripView: View {
                 Spacer()
 
                 Button {
-
+                    viewModel.acceptTrip()
                 } label: {
                     Text("Accept")
                         .font(.headline)
@@ -176,4 +177,5 @@ struct AcceptTripView: View {
 
 #Preview {
     AcceptTripView(trip: Trip.mockTrip)
+        .environmentObject(HomeViewModel())
 }

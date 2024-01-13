@@ -11,7 +11,6 @@ import Firebase
 extension Trip {
     static var mockTrip: Trip {
         Trip(
-            id: UUID().uuidString,
             passengerUid: UUID().uuidString,
             driverUid: UUID().uuidString,
             passengerName: "John Doe",
@@ -25,7 +24,8 @@ extension Trip {
             dropoffLocation: GeoPoint(latitude: 49.227895, longitude: -123.000141),
             tripCost: 55.00,
             distanceToPassenger: 1000,
-            travelTimeToPassenger: 12
+            travelTimeToPassenger: 12,
+            state: .requested
         )
     }
 }
