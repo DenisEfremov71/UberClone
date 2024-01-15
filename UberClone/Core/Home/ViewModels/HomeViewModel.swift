@@ -53,9 +53,10 @@ class HomeViewModel: NSObject, ObservableObject {
                 guard let self = self else { return }
                 self.currentUser = user
                 guard let user = user else { return }
-                
+
                 if user.accountType == .passenger {
                     self.fetchDrivers()
+                    self.addTripObserverForPassenger()
                 } else if user.accountType == .driver {
                     self.fetchTrips()
                 }
@@ -216,6 +217,25 @@ extension HomeViewModel: MKLocalSearchCompleterDelegate {
 // MARK: - Passenger API
 
 extension HomeViewModel {
+    func addTripObserverForPassenger() {
+        guard let currentUser = currentUser, currentUser.accountType == .passenger else { return }
+
+        Firestore.firestore().collection("trips")
+            .whereField("passengerUid", isEqualTo: currentUser.uid)
+            .addSnapshotListener { snapshot, error in
+                if let error = error {
+                    print("DEBUG: Error in snapshot listener \(error.localizedDescription)")
+                }
+
+                guard let change = snapshot?.documentChanges.first, change.type == .added || change.type == .modified else { return }
+                guard let trip = try? change.document.data(as: Trip.self) else { return }
+
+                self.trip = trip
+
+                print("DEBUG: Updated trip state is \(trip.state)")
+            }
+    }
+
     func fetchDrivers() {
         Firestore.firestore().collection("users")
             .whereField("accountType", isEqualTo: AccountType.driver.rawValue)
@@ -250,7 +270,7 @@ extension HomeViewModel {
         getPlacemark(forLocation: userLocation) { [weak self] placemark, error in
             guard let self = self else { return }
             guard let placemark = placemark else { return }
-            
+
             let tripCost = self.computeRidePrice(forType: .uberX)
 
             let trip = Trip(
