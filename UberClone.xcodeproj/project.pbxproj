@@ -33,6 +33,7 @@
 		72562B3B2B050DD200763CDF /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72562B3A2B050DD200763CDF /* SettingsRow.swift */; };
 		72A8CCC42B5C103100AF6637 /* TripLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A8CCC32B5C103100AF6637 /* TripLoadingView.swift */; };
 		72A8CCC62B5C10AA00AF6637 /* TripAcceptedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A8CCC52B5C10AA00AF6637 /* TripAcceptedView.swift */; };
+		72A8CCC82B5C4AF000AF6637 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A8CCC72B5C4AF000AF6637 /* Spinner.swift */; };
 		72B564B42B4F135600ED3E55 /* Trip+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B564B32B4F135600ED3E55 /* Trip+Extensions.swift */; };
 		72B564B62B4F189D00ED3E55 /* GeoPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B564B52B4F189D00ED3E55 /* GeoPoint+Extensions.swift */; };
 		72E2D7A52AFAB0A40071ECA1 /* LocationSearchActivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E2D7A42AFAB0A40071ECA1 /* LocationSearchActivationView.swift */; };
@@ -80,6 +81,7 @@
 		72562B3A2B050DD200763CDF /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
 		72A8CCC32B5C103100AF6637 /* TripLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLoadingView.swift; sourceTree = "<group>"; };
 		72A8CCC52B5C10AA00AF6637 /* TripAcceptedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripAcceptedView.swift; sourceTree = "<group>"; };
+		72A8CCC72B5C4AF000AF6637 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		72B564B32B4F135600ED3E55 /* Trip+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+Extensions.swift"; sourceTree = "<group>"; };
 		72B564B52B4F189D00ED3E55 /* GeoPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeoPoint+Extensions.swift"; sourceTree = "<group>"; };
 		72E2D7A42AFAB0A40071ECA1 /* LocationSearchActivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchActivationView.swift; path = UberClone/Core/LocationSearchActivationView.swift; sourceTree = SOURCE_ROOT; };
@@ -134,8 +136,8 @@
 			children = (
 				72F22DD32B473766008E3396 /* AcceptTripView.swift */,
 				725064DB2AFC4A0E00BBADB9 /* RideRequestView.swift */,
-				72A8CCC32B5C103100AF6637 /* TripLoadingView.swift */,
 				72A8CCC52B5C10AA00AF6637 /* TripAcceptedView.swift */,
+				72A8CCC32B5C103100AF6637 /* TripLoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,10 +179,11 @@
 			isa = PBXGroup;
 			children = (
 				725064ED2AFECDC300BBADB9 /* CustomInputField.swift */,
-				72562B362B05043800763CDF /* UserInfo.swift */,
+				7244C5802B0904430001AE32 /* LocationSearchResults.swift */,
 				72562B382B050AF500763CDF /* SavedLocationRow.swift */,
 				72562B3A2B050DD200763CDF /* SettingsRow.swift */,
-				7244C5802B0904430001AE32 /* LocationSearchResults.swift */,
+				72A8CCC72B5C4AF000AF6637 /* Spinner.swift */,
+				72562B362B05043800763CDF /* UserInfo.swift */,
 			);
 			path = ReusableItems;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				72562B3B2B050DD200763CDF /* SettingsRow.swift in Sources */,
 				72F64F602AFA6BF1002546FA /* HomeView.swift in Sources */,
 				725064E22AFD9E3A00BBADB9 /* UberLocation.swift in Sources */,
+				72A8CCC82B5C4AF000AF6637 /* Spinner.swift in Sources */,
 				72E3007D2B01B26C00D989C5 /* SideMenuView.swift in Sources */,
 				72E2D7A52AFAB0A40071ECA1 /* LocationSearchActivationView.swift in Sources */,
 				72562B392B050AF500763CDF /* SavedLocationRow.swift in Sources */,
