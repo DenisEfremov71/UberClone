@@ -68,6 +68,14 @@ extension HomeView {
                     if mapState == .locationSelected || mapState == .polylineAdded {
                         RideRequestView()
                             .transition(.move(edge: .bottom))
+                    } else if mapState == .tripRequested {
+                        TripLoadingView()
+                            .transition(.move(edge: .bottom))
+                    } else if mapState == .tripAccepted {
+                        TripAcceptedView()
+                            .transition(.move(edge: .bottom))
+                    } else if mapState == .tripRejected {
+                        // show trip rejected view
                     }
                 } else {
                     if let trip = homeVM.trip {
@@ -91,13 +99,15 @@ extension HomeView {
         .onReceive(homeVM.$trip) { trip in
             guard let trip = trip else { return }
 
-            switch trip.state {
-            case .requested:
-                print("DEBUG: trip requested")
-            case .accepted:
-                print("DEBUG: trip accepted")
-            case .rejected:
-                print("DEBUG: trip rejected")
+            withAnimation(.spring()) {
+                switch trip.state {
+                case .requested:
+                    self.mapState = .tripRequested
+                case .accepted:
+                    self.mapState = .tripAccepted
+                case .rejected:
+                    self.mapState = .tripRejected
+                }
             }
         }
     }
