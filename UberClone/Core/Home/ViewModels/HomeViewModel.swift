@@ -341,9 +341,14 @@ extension HomeViewModel {
 
     private func updateTripState(state: TripState) {
         guard let trip = trip else { return }
-        Firestore.firestore().collection("trips").document(trip.id).updateData([
-            "state": state.rawValue
-        ]) { error in
+
+        var data = ["state": state.rawValue]
+
+        if state == .accepted {
+            data["travelTimeToPassenger"] = trip.travelTimeToPassenger
+        }
+
+        Firestore.firestore().collection("trips").document(trip.id).updateData(data) { error in
             if let error = error {
                 print("DEBUG: Failed to update trips, Error = \(error.localizedDescription)")
                 return

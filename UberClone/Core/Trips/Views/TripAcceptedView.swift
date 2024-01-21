@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TripAcceptedView: View {
+    @EnvironmentObject var viewModel: HomeViewModel
+
     var body: some View {
         VStack {
             Capsule()
@@ -15,72 +17,75 @@ struct TripAcceptedView: View {
                 .frame(width: 48, height: 6)
                 .padding(.top, 8)
 
-            // pickup info view
-            VStack {
-                HStack {
-                    Text("Meet your driver at Apple Campus for your trip to Starbucks")
-                        .font(.body)
-                        .frame(height: 44)
-                        .padding(.trailing)
-                    Spacer()
-                    VStack {
-                        Text("10")
-                            .bold()
-                        Text("min")
-                            .bold()
-                    }
-                    .frame(width: 56, height: 56)
-                    .foregroundColor(.white)
-                    .background(Color(.systemBlue))
-                    .cornerRadius(10)
-                }
-                .padding()
-
-                Divider()
-            }
-
-            // driver info view
-            VStack {
-                HStack {
-                    Image("male-profile-photo")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 80, height: 80)
-                        .clipShape(Circle())
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Kevin Smith")
-                            .fontWeight(.bold)
-                        HStack {
-                            Image(systemName: "star.fill")
-                                .foregroundColor(Color(.systemYellow))
-                                .imageScale(.small)
-                            Text("4.8")
-                                .font(.footnote)
-                                .foregroundColor(.gray)
+            if let trip = viewModel.trip {
+                
+                // pickup info view
+                VStack {
+                    HStack {
+                        Text("Meet your driver at \(trip.pickupLocationName) for your trip to \(trip.dropoffLocationName)")
+                            .font(.body)
+                            .frame(height: 44)
+                            .padding(.trailing)
+                        Spacer()
+                        VStack {
+                            Text("\(trip.travelTimeToPassenger)")
+                                .bold()
+                            Text("min")
+                                .bold()
                         }
+                        .frame(width: 56, height: 56)
+                        .foregroundColor(.white)
+                        .background(Color(.systemBlue))
+                        .cornerRadius(10)
                     }
-                    Spacer()
+                    .padding()
 
-                    // driver vehicle info
-                    VStack(alignment: .center) {
-                        Image("uber-x")
+                    Divider()
+                }
+
+                // driver info view
+                VStack {
+                    HStack {
+                        Image("male-profile-photo")
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 120, height: 64)
-                        HStack {
-                            Text("Mercedes")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(.gray)
-                            Text("050SBN")
-                                .font(.system(size: 14, weight: .semibold))
+                            .frame(width: 80, height: 80)
+                            .clipShape(Circle())
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(trip.driverName)
+                                .fontWeight(.bold)
+                            HStack {
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(Color(.systemYellow))
+                                    .imageScale(.small)
+                                Text("4.8")
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
+                            }
                         }
-                        .frame(width: 160)
-                        .padding(.bottom)
+                        Spacer()
+
+                        // driver vehicle info
+                        VStack(alignment: .center) {
+                            Image("uber-x")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 120, height: 64)
+                            HStack {
+                                Text("Mercedes")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundColor(.gray)
+                                Text("050SBN")
+                                    .font(.system(size: 14, weight: .semibold))
+                            }
+                            .frame(width: 160)
+                            .padding(.bottom)
+                        }
                     }
+                    Divider()
                 }
-                Divider()
+                .padding()
             }
-            .padding()
 
             Button {
                 print("DEBUG: Cancel trip")
