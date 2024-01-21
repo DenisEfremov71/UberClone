@@ -109,4 +109,5 @@ struct TripAcceptedView: View {
 
 #Preview {
     TripAcceptedView()
+        .environmentObject(HomeViewModel())
 }
