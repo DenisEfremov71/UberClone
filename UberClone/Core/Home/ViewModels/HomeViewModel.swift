@@ -17,7 +17,8 @@ class HomeViewModel: NSObject, ObservableObject {
 
     private let service = UserService.shared
     private var cancellables = Set<AnyCancellable>()
-    private var currentUser: User?
+    var currentUser: User?
+    var routeToPickupLocation: MKRoute?
 
     @Published var drivers = [User]()
     @Published var trip: Trip?
@@ -322,6 +323,7 @@ extension HomeViewModel {
                 self.trip = trip
 
                 self.getDestinationRoute(from: trip.driverLocation.toCoordinate(), to: trip.pickupLocation.toCoordinate()) { route in
+                    self.routeToPickupLocation = route
                     self.trip?.travelTimeToPassenger = Int(route.expectedTravelTime / 60)
                     self.trip?.distanceToPassenger = route.distance
                 }
