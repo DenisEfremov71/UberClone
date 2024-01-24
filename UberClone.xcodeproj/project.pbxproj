@@ -32,6 +32,7 @@
 		72562B372B05043800763CDF /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72562B362B05043800763CDF /* UserInfo.swift */; };
 		72562B392B050AF500763CDF /* SavedLocationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72562B382B050AF500763CDF /* SavedLocationRow.swift */; };
 		72562B3B2B050DD200763CDF /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72562B3A2B050DD200763CDF /* SettingsRow.swift */; };
+		728CF6B52B614E32008B9517 /* TripCancelledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728CF6B42B614E32008B9517 /* TripCancelledView.swift */; };
 		72A8CCC42B5C103100AF6637 /* TripLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A8CCC32B5C103100AF6637 /* TripLoadingView.swift */; };
 		72A8CCC62B5C10AA00AF6637 /* TripAcceptedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A8CCC52B5C10AA00AF6637 /* TripAcceptedView.swift */; };
 		72A8CCC82B5C4AF000AF6637 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A8CCC72B5C4AF000AF6637 /* Spinner.swift */; };
@@ -81,6 +82,7 @@
 		72562B362B05043800763CDF /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		72562B382B050AF500763CDF /* SavedLocationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocationRow.swift; sourceTree = "<group>"; };
 		72562B3A2B050DD200763CDF /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
+		728CF6B42B614E32008B9517 /* TripCancelledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCancelledView.swift; sourceTree = "<group>"; };
 		72A8CCC32B5C103100AF6637 /* TripLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLoadingView.swift; sourceTree = "<group>"; };
 		72A8CCC52B5C10AA00AF6637 /* TripAcceptedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripAcceptedView.swift; sourceTree = "<group>"; };
 		72A8CCC72B5C4AF000AF6637 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 		725064D92AFC49EB00BBADB9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				728CF6B32B614E1A008B9517 /* Shared */,
 				723F0ABC2B5D9CB6002EB146 /* Passengers */,
 				723F0ABB2B5D9CB1002EB146 /* Drivers */,
 			);
@@ -230,6 +233,14 @@
 				72E364AB2B07A85F00E240E4 /* SavedLocationViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		728CF6B32B614E1A008B9517 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				728CF6B42B614E32008B9517 /* TripCancelledView.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		72E2D7A02AFAAF4F0071ECA1 /* Home */ = {
@@ -521,6 +532,7 @@
 				72A8CCC62B5C10AA00AF6637 /* TripAcceptedView.swift in Sources */,
 				725064E42AFDB3B500BBADB9 /* Color+Extensions.swift in Sources */,
 				7244C57F2B08FE8C0001AE32 /* SavedLocationSearchView.swift in Sources */,
+				728CF6B52B614E32008B9517 /* TripCancelledView.swift in Sources */,
 				72562B342B0502D300763CDF /* SettingsView.swift in Sources */,
 				72E300782B0198EA00D989C5 /* User.swift in Sources */,
 				72E2D7AF2AFC12FA0071ECA1 /* MapViewState.swift in Sources */,

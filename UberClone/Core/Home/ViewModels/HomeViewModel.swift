@@ -48,6 +48,26 @@ class HomeViewModel: NSObject, ObservableObject {
 
     // MARK: - Helpers
 
+    var tripCancelledMessage: String {
+        guard let user = currentUser, let trip = trip else { return "" }
+
+        if user.accountType == .passenger {
+            if trip.state == .driverCancelled {
+                return "Your driver cancelled this trip"
+            } else if trip.state == .passengerCancelled {
+                return "Your trip has been cancelled"
+            }
+        } else {
+            if trip.state == .driverCancelled {
+                return "Your trip has been cancelled"
+            } else if trip.state == .passengerCancelled {
+                return "The trip has been cancelled by the passenger"
+            }
+        }
+
+        return ""
+    }
+
     func viewForState(_ state: MapViewState, user: User) -> some View {
         switch state {
         case .tripRequested:
@@ -66,10 +86,8 @@ class HomeViewModel: NSObject, ObservableObject {
                     return AnyView(PickupPassengerView(trip: trip))
                 }
             }
-        case .tripCancelledByPassenger:
-            return AnyView(Text("Trip cancelled by passenger"))
-        case .tripCancelledByDriver:
-            return AnyView(Text("Trip cancelled by driver"))
+        case .tripCancelledByPassenger, .tripCancelledByDriver:
+            return AnyView(TripCancelledView())
         case .polylineAdded, .locationSelected:
             return AnyView(RideRequestView())
         default:
@@ -114,6 +132,20 @@ class HomeViewModel: NSObject, ObservableObject {
             } else {
                 print("DEBUG: Did update trip with state \(state)")
             }
+        }
+    }
+
+    func deleteTrip() {
+        guard let trip = trip else { return }
+
+        Firestore.firestore().collection("trips").document(trip.id).delete { error in
+            // TODO: - Handle the error
+            guard error == nil else {
+                print("DEBUG: Failed to delete the trip \(trip.id) with error \(error?.localizedDescription ?? "")")
+                return
+            }
+
+            self.trip = nil
         }
     }
 }
